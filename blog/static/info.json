@@ -1,5 +1,12 @@
-{
-  "lesson": "3",
-  "timeline": "35.00",
-  "topic": "ORM"
-}
+[
+  {
+    "lesson": "3",
+    "timeline": "00.44.00",
+    "topic": "set config"
+  },
+  {
+    "lesson": "3",
+    "timeline": "01.07.00",
+    "topic": "import SQLAlchemy"
+  }
+]

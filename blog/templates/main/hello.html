@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block main %}
-    <p>Stopped on webinar <b>{{ data['lesson'] }}</b>
-        at timeline <b>{{ data['timeline'] }}</b>
-        topic <b>{{ data['topic'] }}</b>
-    </p>
+    {% for el in data %}
+        <p>Stopped on webinar <b>{{ el['lesson'] }}</b>
+            at timeline <b>{{ el['timeline'] }}</b>
+            topic <b>{{ el['topic'] }}</b>
+        </p>
+    {% endfor %}
 {% endblock %}
