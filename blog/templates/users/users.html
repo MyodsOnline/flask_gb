@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <a href="{{ url_for('item.items') }}">items</a>
+
+    {% for user_id, user_name in users.items() %}
+        <h3><a href="{{ url_for('user.get_user', pk=user_id) }}">{{ user_id }}</a>. Hello, {{ user_name }}</h3>
+    {% endfor %}
+
+{% endblock %}
