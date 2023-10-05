@@ -8,5 +8,10 @@
     "lesson": "3",
     "timeline": "01.07.00",
     "topic": "import SQLAlchemy"
+  },
+  {
+    "lesson": "3",
+    "timeline": "01.44.00",
+    "topic": "database records to template"
   }
 ]

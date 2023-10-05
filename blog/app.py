@@ -29,3 +29,4 @@ def register_blueprints(app: Flask):
 
 def register_commands(app: Flask):
     app.cli.add_command(commands.init_db)
+    app.cli.add_command(commands.create_users)
