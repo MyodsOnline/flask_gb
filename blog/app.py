@@ -2,10 +2,13 @@ from flask import Flask, request, g
 
 from blog.user.views import user
 from blog.main.views import item
+from config import Development
 
 
 def create_app() -> Flask:
     app = Flask(__name__)
+    app.config.from_object(Development)
+    print(app.config)
     register_blueprints(app)
     return app
 
