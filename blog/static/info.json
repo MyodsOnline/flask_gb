@@ -17,7 +17,12 @@
   {
     "lesson": "3",
     "timeline": "02.00.00",
-    "topic": "login/logout"
+    "topic": "login"
+  },
+  {
+    "lesson": "3",
+    "timeline": "02.26.00",
+    "topic": "logout - not finished"
   },
   {
     "lesson": "offtopic",
