@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container text-center">
+    <h2>{{ data }}</h2>
+    <h4>Now is: {{ time }}</h4>
+    <div class="btn-group">
+        <a href="{{ url_for('user.user_list') }}" class="btn btn-danger">Users list</a>
+        <a href="{{ url_for('item.items') }}" class="btn btn-warning">Items list</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-success">Auth</a>
+    </div>
+</div>
+{% endblock %}

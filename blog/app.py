@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from blog.user.views import user
 from blog.main.views import item
+from blog.auth.views import auth
 from config import Development
 from blog import commands
 
@@ -25,6 +26,7 @@ def create_app() -> Flask:
 def register_blueprints(app: Flask):
     app.register_blueprint(user)
     app.register_blueprint(item)
+    app.register_blueprint(auth)
 
 
 def register_commands(app: Flask):

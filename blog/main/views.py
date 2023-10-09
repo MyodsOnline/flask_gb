@@ -9,5 +9,4 @@ item = Blueprint('item', __name__, url_prefix='/items', static_folder='../static
 def item_list():
     with open('blog/static/info.json', encoding='utf-8') as f:
         data = json.load(f)
-        print(data)
     return render_template('main/hello.html', data=data)

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="row">
+        <h1 class="display-3">{{ title }}</h1>
+        {% with msg = get_flashed_messages() %}
+            {% if msg %}
+            <div class="alert alert-danger" role="alert">
+              {{ msg }}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <form  method="post" action="{{ url_for('auth.login') }}">
+            <div class="mb-3 mt-3">
+                <label for="exampleInputUsername" class="form-label">Your username</label>
+                <input type="tel" class="form-control" name="Username" aria-describedby="usernameHelp">
+                <div id="usernameHelp" class="form-text">Please, enter your username.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" name="Password">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}
