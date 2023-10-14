@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+from flask_login import login_user, logout_user, login_required
 
 
 auth = Blueprint('auth', __name__, static_folder='../static')
 
 
-@auth.route('/login', endpoint='login', methods=['POST', 'GET'])
+@auth.route('/login', endpoint='login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         title = 'Login page'
@@ -23,16 +24,19 @@ def login():
         flash('Check your login details')
         return redirect(url_for('auth.login'))
 
-    return redirect(url_for('user.detail', pk=user.id))
+    login_user(user)
+
+    return redirect(url_for('auth.index', pk=user.id))
 
 
 @auth.route('/logout')
+@login_required
 def logout():
-    return '13'
+    logout_user()
+    return redirect(url_for('.index'))
 
 
 @auth.route('/', endpoint='index')
 def index():
-    data = 'Welcome, friend!'
     time = datetime.now().strftime('%d.%m.%Y %H:%M')
-    return render_template('auth/index.html', data=data, time=time)
+    return render_template('auth/index.html', time=time)

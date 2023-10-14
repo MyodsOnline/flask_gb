@@ -2,12 +2,22 @@
 
 {% block main %}
 <div class="container text-center">
-    <h2>{{ data }}</h2>
+    <h2>Welcome,
+        {% if current_user.is_authenticated %}
+            {{ current_user.username }}
+        {% else %}
+            friend
+        {% endif %}!
+    </h2>
     <h4>Now is: {{ time }}</h4>
     <div class="btn-group">
         <a href="{{ url_for('user.user_list') }}" class="btn btn-danger">Users list</a>
         <a href="{{ url_for('item.items') }}" class="btn btn-warning">Items list</a>
-        <a href="{{ url_for('auth.login') }}" class="btn btn-success">Auth</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-info">Logout</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}" class="btn btn-success">Login</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
