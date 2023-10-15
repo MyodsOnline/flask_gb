@@ -1,12 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 
 from config import Development
 from blog import commands
-
-
-db = SQLAlchemy()
+from .extensions import login_manager, db, migrate
 
 
 def create_app() -> Flask:
@@ -22,7 +18,7 @@ def create_app() -> Flask:
 
 def register_extensions(app):
     db.init_app(app)
-    login_manager = LoginManager()
+    migrate.init_app(app, db, compare_type=True)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -46,3 +42,4 @@ def register_blueprints(app: Flask):
 def register_commands(app: Flask):
     app.cli.add_command(commands.init_db)
     app.cli.add_command(commands.create_users)
+    app.cli.add_command(commands.create_init_user)

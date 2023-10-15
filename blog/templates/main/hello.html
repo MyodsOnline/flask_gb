@@ -5,6 +5,9 @@
         <p>Stopped on webinar <b>{{ el['lesson'] }}</b>
             at timeline <b>{{ el['timeline'] }}</b>
             topic <b>{{ el['topic'] }}</b>
+            {% if el['tips'] %}
+                <i>{{ el['tips'] }}</i>
+            {% endif %}
         </p>
     {% endfor %}
 {% endblock %}

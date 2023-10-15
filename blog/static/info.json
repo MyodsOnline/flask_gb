@@ -33,5 +33,16 @@
     "lesson": "4",
     "timeline": "1:00:00",
     "topic": "Docker"
+  },
+  {
+    "lesson": "4",
+    "timeline": "1:38:00",
+    "topic": "docker-compose"
+  },
+  {
+    "lesson": "4",
+    "timeline": "1:40:00",
+    "topic": "flask-migrate",
+    "tips": "flask db init (for init database) -> flask db migrate -> flask db upgrade"
   }
 ]

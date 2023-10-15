@@ -46,3 +46,16 @@ def create_users():
     users = User.query.all()
     for user in users:
         print(f'Done. User {user} create')
+
+
+@click.command('create-init-user')
+def create_init_user():
+    from blog.models import User
+    from wsgi import app
+    from blog.extensions import db
+
+    with app.app_context():
+        db.session.add(
+            User(username='admin', password=generate_password_hash('123'))
+        )
+        db.session.commit()
