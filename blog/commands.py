@@ -56,6 +56,8 @@ def create_init_user():
 
     with app.app_context():
         db.session.add(
-            User(username='admin', password=generate_password_hash('123'))
+            User(username='admin',
+                 email='admin@adm.in',
+                 password=generate_password_hash('123'))
         )
         db.session.commit()
