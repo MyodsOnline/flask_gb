@@ -44,5 +44,10 @@
     "timeline": "1:40:00",
     "topic": "flask-migrate",
     "tips": "flask db init (for init database) -> flask db migrate -> flask db upgrade"
+  },
+  {
+    "lesson": "5",
+    "timeline": "1:02:00",
+    "topic": "login form"
   }
 ]
