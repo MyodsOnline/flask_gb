@@ -17,7 +17,10 @@
         {% for field in ['username', 'first_name', 'email', 'password', 'confirm_password'] %}
             {{ render_field(form[field]) }}
         {% endfor %}
-        {{ form.submit(class="btn btn-light") }}
+        <div  class="btn-group">
+            {{ form.submit(class="btn btn-info") }}
+            <a href="{{ url_for('auth.index') }}" class="btn btn-primary">Go home</a>
+        </div>
     </form>
 
 {% endblock %}
