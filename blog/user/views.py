@@ -19,7 +19,7 @@ def register():
     if request.method == 'POST' and form.validate_on_submit():
         if User.query.filter_by(email=form.email.data).count():
             form.email.errors.append('email is not unique!')
-            render_template('users/register.html', form=form, errors=errors)
+            return render_template('users/register.html', form=form, errors=errors)
 
         _user = User(
             username = form.username.data,
