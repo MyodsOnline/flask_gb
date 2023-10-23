@@ -4,7 +4,7 @@ from flask_login import login_required, login_user
 from werkzeug.security import generate_password_hash
 
 
-from blog.models import User
+from blog.models import User, Author
 from blog.forms.user import UserRegistrationForm
 from blog.extensions import db
 
@@ -22,10 +22,10 @@ def register():
             return render_template('users/register.html', form=form, errors=errors)
 
         _user = User(
-            username = form.username.data,
-            first_name = form.first_name.data,
-            email = form.email.data,
-            password = generate_password_hash(form.password.data),
+            username=form.username.data,
+            first_name=form.first_name.data,
+            email=form.email.data,
+            password=generate_password_hash(form.password.data),
         )
 
         db.session.add(_user)
@@ -43,7 +43,8 @@ def register():
 @user.route('/', endpoint='user_list')
 def user_list():
     users = User.query.all()
-    return render_template('users/users.html', users=users)
+    authors = Author.query.all()
+    return render_template('users/users.html', users=users, authors=authors)
 
 
 @user.route('/<int:pk>', endpoint='detail')
