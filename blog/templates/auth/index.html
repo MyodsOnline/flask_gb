@@ -13,6 +13,7 @@
     <div class="btn-group">
         <a href="{{ url_for('user.user_list') }}" class="btn btn-danger">Users list</a>
         <a href="{{ url_for('item.items') }}" class="btn btn-warning">Items list</a>
+        <a href="{{ url_for('article.articles_list') }}" class="btn btn-secondary">Articles list</a>
         {% if current_user.is_authenticated %}
             <a href="{{ url_for('auth.logout') }}" class="btn btn-info">Logout</a>
         {% else %}

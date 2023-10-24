@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 from blog.app import db
 
@@ -21,13 +22,11 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'{self.username} - {self.email}'
 
-    def __init__(self, username, first_name, email, password, is_admin, active):
+    def __init__(self, username, first_name, email, password):
         self.username = username
         self.first_name = first_name
         self.email = email
         self.password = password
-        self.is_admin = is_admin
-        self.active = active
 
 
 class Author(db.Model):
@@ -37,3 +36,18 @@ class Author(db.Model):
     user_id = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
 
     user = relationship('User', back_populates='author')
+    articles = relationship('Articles', back_populates='author')
+
+
+class Articles(db.Model):
+    __tablename__ = 'articles'
+
+    id = db.Column(db.Integer, primary_key=True)
+    author_id = db.Column(db.Integer, ForeignKey('authors.id'), nullable=False)
+    title = db.Column(db.String(255))
+    text = db.Column(db.Text)
+    is_published = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    author = relationship('Author', back_populates='articles')

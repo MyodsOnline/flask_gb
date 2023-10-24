@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <h3><a href="{{ url_for('article.articles_list') }}" class="btn btn-light">go back</a> Article detail</h3>
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text">{{ article.text }}</p>
+        <p class="card-text">{{ article.author.user.username }}</p>
+        <p class="card-text"><small class="text-body-secondary">Created: {{ article.created_at }}</small></p>
+      </div>
+    </div>
+{% endblock %}
