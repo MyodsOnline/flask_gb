@@ -37,7 +37,8 @@
   {
     "lesson": "4",
     "timeline": "1:38:00",
-    "topic": "docker-compose"
+    "topic": "docker-compose",
+    "tips": "pgadmin connect to running postrgres: docker container ls -> docker inspect <CONTAINER ID> -> search Networks/Gateway"
   },
   {
     "lesson": "4",
@@ -49,5 +50,10 @@
     "lesson": "5",
     "timeline": "1:02:00",
     "topic": "registration form"
+  },
+  {
+    "lesson": "6",
+    "timeline": "0:20:00",
+    "topic": "start coding"
   }
 ]

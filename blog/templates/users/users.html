@@ -2,15 +2,25 @@
 
 
 {% block main %}
-    <a href="{{ url_for('item.items') }}">items</a>
+    <a href="{{ url_for('auth.index') }}" class="btn btn-outline-primary">Homepage</a>
 
-    <div>
-    {% for user in users %}
-        <a href="{{ url_for('user.detail', pk=user.id) }}">{{ user.username }}</a>
-        <p>{{ user.email }}</p>
-        <p>{{ user.password }}</p>
-        <p>{{ user.id }}</p>
-    {% endfor %}
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Users:</h2>
+        {% for user in users %}
+            <a href="{{ url_for('user.detail', pk=user.id) }}">{{ user.username }}</a>
+            <p>{{ user.email }}. {{ user.id }} - {{ user.first_name }}</p>
+        {% endfor %}
+        </div>
+        <div class="col">
+            <h2>Authors:</h2>
+        {% if authors %}
+            {% for author in authors %}
+                <p>{{ author.user.email }}</p>
+                <p>{{ author.id }} - {{ author.user.first_name }}</p>
+            {% endfor %}
+        {% endif %}
+        </div>
     </div>
 
 {% endblock %}
