@@ -19,9 +19,6 @@ class User(db.Model, UserMixin):
 
     author = relationship('Author', back_populates='user', uselist=False)
 
-    def __repr__(self):
-        return f'{self.username} - {self.email}'
-
     def __init__(self, username, first_name, email, password):
         self.username = username
         self.first_name = first_name

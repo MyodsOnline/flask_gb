@@ -2,6 +2,15 @@
 
 
 {% block main %}
-    <h3><a href="{{ url_for('user.user_list') }}" class="btn btn-light">go back</a> User {{ user }} detail</h3>
-
+    <a href="{{ url_for('user.user_list') }}" class="btn btn-light">go back</a>
+    <h3>User {{ user.username }} detail</h3>
+    {% if user.author.articles %}
+        <ul class="list-group">
+        {% for article in user.author.articles %}
+            <li class="list-group-item list-group-item-primary"><b>{{ user.first_name.capitalize() }}:</b> {{ article.title }}</li>
+            <li class="list-group-item">{{ article.text }}</li>
+            <li class="list-group-item list-group-item-secondary">{{ article.updated_at.strftime('%d-%m-%Y') }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

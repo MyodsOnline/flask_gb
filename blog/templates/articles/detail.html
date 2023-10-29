@@ -3,6 +3,9 @@
 
 {% block main %}
     <h3><a href="{{ url_for('article.articles_list') }}" class="btn btn-light">go back</a> Article detail</h3>
+    {% if tip %}
+        <h4>{{ tip }}</h4>
+    {% endif %}
     <div class="card mt-3">
       <div class="card-body">
         <h5 class="card-title">{{ article.title }}</h5>
