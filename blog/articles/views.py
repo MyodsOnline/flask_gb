@@ -44,8 +44,10 @@ def articles_list():
 
 
 @article.route('/<int:article_id>', endpoint='article_detail', methods=['GET'])
+@login_required
 def get_article(article_id):
     _article = Articles.query.filter_by(id=article_id).one_or_none()
+    tip = 'You should be to read the article you must be logged in'
     if not _article:
         raise NotFound(f'Article #{article_id} not found')
-    return render_template('articles/detail.html', article=_article)
+    return render_template('articles/detail.html', article=_article, tip=tip)
