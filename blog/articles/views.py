@@ -37,7 +37,6 @@ def create_article():
 @article.route('/', endpoint='articles_list', methods=['GET'])
 def articles_list():
     articles = Articles.query.all()
-    print(articles)
     if not articles:
         return redirect(url_for('article.create_article'))
     return render_template('articles/articles.html', articles=articles)
@@ -47,7 +46,6 @@ def articles_list():
 @login_required
 def get_article(article_id):
     _article = Articles.query.filter_by(id=article_id).one_or_none()
-    tip = 'You should be to read the article you must be logged in'
     if not _article:
         raise NotFound(f'Article #{article_id} not found')
-    return render_template('articles/detail.html', article=_article, tip=tip)
+    return render_template('articles/detail.html', article=_article)

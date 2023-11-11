@@ -62,3 +62,17 @@ def create_init_user():
                  password=generate_password_hash('123'))
         )
         db.session.commit()
+
+
+@click.command('create_simple_tag')
+def create_simple_tag():
+    from blog.models import Tag
+    from wsgi import app
+    from blog.extensions import db
+
+    with app.app_context():
+        tags = ('init', )
+        for tag in tags:
+            db.session.add(Tag(name=tag))
+        db.session.commit()
+    click.echo(f'Created tags: {tags}')
