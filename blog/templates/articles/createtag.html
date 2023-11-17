@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% from 'macros/formhelpers.html' import render_field %}
+
+
+{% block main %}
+
+    <form method="POST" action="{{ url_for('article.create_tag') }}">
+        {{ form.csrf_token }}
+        {% for field in ['name'] %}
+            {{ render_field(form[field]) }}
+        {% endfor %}
+        <div  class="btn-group mt-2">
+            {{ form.submit(class="btn btn-info") }}
+            <a href="{{ url_for('auth.index') }}" class="btn btn-primary">Go home</a>
+        </div>
+    </form>
+
+{% endblock %}

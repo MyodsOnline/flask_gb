@@ -2,9 +2,11 @@ from flask import Blueprint, render_template, redirect, request, url_for
 from werkzeug.exceptions import NotFound
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload
+from sqlalchemy import distinct
 
 from blog.models import Articles, Author, Tag
 from blog.forms.article import CreateArticleForm
+from blog.forms.tag import CreateTagForm
 from blog.extensions import db
 
 article = Blueprint('article', __name__, url_prefix='/articles', static_folder='../static')
@@ -43,7 +45,7 @@ def create_article():
 @article.route('/', endpoint='articles_list', methods=['GET'])
 def articles_list():
     articles = Articles.query.all()
-    tags = Tag.query.all()
+    tags = Tag.query.distinct().all()
     if not articles:
         return redirect(url_for('article.create_article'))
     return render_template('articles/articles.html', articles=articles, tags=tags)
@@ -56,3 +58,22 @@ def get_article(article_id):
     if not _article:
         raise NotFound(f'Article #{article_id} not found')
     return render_template('articles/detail.html', article=_article)
+
+
+@article.route('/create_tag', methods=['POST', 'GET'])
+@login_required
+def create_tag():
+    form = CreateTagForm(request.form)
+    if request.method == 'POST' and form.validate_on_submit():
+        _tag = Tag(name=form.name.data.strip())
+        db.session.add(_tag)
+        db.session.commit()
+        _tags = Tag.query.all()
+        print(f'Tag {_tag.name} created')
+
+    return render_template('articles/createtag.html', form=form)
+
+
+@article.route('/<int:tag_id>', endpoint='tag_articles', methods=['GET'])
+def get_tag_articles(tag_id):
+    pass
