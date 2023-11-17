@@ -6,7 +6,7 @@
 
     <form method="POST" action="{{ url_for('article.create_article') }}">
         {{ form.csrf_token }}
-        {% for field in ['title', 'text'] %}
+        {% for field in ['title', 'text', 'tags'] %}
             {{ render_field(form[field]) }}
         {% endfor %}
         <div  class="btn-group mt-2">

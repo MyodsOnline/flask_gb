@@ -71,7 +71,7 @@ def create_simple_tag():
     from blog.extensions import db
 
     with app.app_context():
-        tags = ('init', )
+        tags = ('init', 'commit', 'merge')
         for tag in tags:
             db.session.add(Tag(name=tag))
         db.session.commit()
