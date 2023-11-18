@@ -19,7 +19,7 @@
     </div>
     <div class="mt-2 mb-2">
         {% for tag in tags %}
-            <span class="badge text-bg-success">{{ tag.name }}</span>
+            <a href="{{ url_for('article.tag_articles', tag_id=tag.id) }}" class="badge text-bg-success">{{ tag.name }}</a>
         {% endfor %}
         <a href="{{ url_for('article.create_tag') }}" class="badge text-bg-warning">Create Tag</a>
     </div>

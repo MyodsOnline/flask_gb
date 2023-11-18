@@ -68,12 +68,15 @@ def create_tag():
         _tag = Tag(name=form.name.data.strip())
         db.session.add(_tag)
         db.session.commit()
-        _tags = Tag.query.all()
         print(f'Tag {_tag.name} created')
 
     return render_template('articles/createtag.html', form=form)
 
 
-@article.route('/<int:tag_id>', endpoint='tag_articles', methods=['GET'])
+@article.route('/tags/<int:tag_id>', endpoint='tag_articles', methods=['GET'])
 def get_tag_articles(tag_id):
-    pass
+    _articles = Author.query.filter_by(id=tag_id).one_or_none()
+    print(_articles)
+    if not _articles:
+        raise NotFound(f'Articles with not found')
+    return render_template('articles/articles.html', articles=_articles)
