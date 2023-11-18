@@ -70,6 +70,7 @@ def create_tag():
         db.session.commit()
         _tags = Tag.query.all()
         print(f'Tag {_tag.name} created')
+        return redirect(url_for('article.articles_list'))
 
     return render_template('articles/createtag.html', form=form)
 
